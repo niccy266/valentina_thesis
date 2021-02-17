@@ -1,0 +1,126 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This is a document template for an Otago thesis (Masters, PhD, etc).
+%% A skeleton chapter layout is also suggested.
+%%
+%% Look in the directory example_document for filled-out chapters
+%% that show you how to do figures, bibliographies, and tables.
+%%
+%% Since this was written for Computer Science at Otago University,
+%% Harvard (author, date) style citations are used.  
+%%
+%% All Physics and EMAN students should consult their advisors as 
+%% to what style of citations to use!
+%%
+%% Nathan Rountree 9/2/98
+%%
+%% Edited for Physics use by Annika Seppala, Feb 2020
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% In the style of a technical report, in 12pt and one sided.
+%% Start chapters on right hand side pages only.
+%%
+\documentclass[12pt]{report}    
+%\documentclass[12pt,twoside,openright]{report} %% Use this for twosided.
+
+%%
+%% Load packages.
+%%
+\usepackage[bschons,nolibrary]{otagothesis}     %% Use Otago page layout
+%% Use [bschons] for BScHons thesis
+%%     [msc]     for MSc
+%%     [phd]     for PhD 
+%%     [dipsci]  for PGDipSci
+%%  nolibrary-option omits a library declaration form.
+
+\usepackage[longnamesfirst,round]{natbib} %% Use Natural Sciences bibliography
+
+\usepackage{graphicx}             %% jpg, gif, tiff, and pdf graphics 
+\usepackage{moreverb}             %% Verbatim Code Listings
+
+% Standard Physics additions
+\usepackage{amssymb,amsmath}
+\usepackage{siunitx}
+\usepackage[colorlinks=true,pdfstartview=FitV,linkcolor=blue, 
+            citecolor=blue,urlcolor=blue]{hyperref}
+
+%%
+%% Set title, author and date.
+%%
+\title{A Suggested Thesis or Dissertation Layout}
+\author{Original document by Nathan Rountree (Department of Computer Science), amended for Physics in 2020 by Annika Sepp\"al\"a}
+\date{9 February 1998}
+
+%\title{Your thesis title here} % <-- Your thesis title here
+%\author{Your name here} % <-- Add your name here
+%\date{\today} % <-- Submission date here. 
+%% \date{\today} prints the date you compiled the document. 
+%% This changes automatically every time you run LaTeX!
+
+%%
+%% The library want to know all sorts of personal stuff!
+%% Can be left out if you don't use the \frontstuff command
+%%
+%\fullname{Your full name here} % <-- Add your name here
+%\department{Department of Physics}
+%%\dob{1 January 1900} %% date-of-birth, only needed for library declaration
+%\address{730 Cumberland Street, Dunedin, NZ}
+\fullname{Nathan Rountree}
+\department{Department of Computer Science}
+\dob{1 January 1900} %% date-of-birth
+\address{111 North Road, Dunedin, NZ}
+
+%%
+%% Uncomment to just print up a few chapters.
+%%
+%%\includeonly{literature,conclusion}
+
+%%
+%% Go!
+%%
+\begin{document}
+
+%%
+%% Put in titlepage and contents, etc...
+%%
+ \frontstuff
+%% If you comment this out the pdf file will start from Chapter 1.
+%% This is can be useful while you are still working on the text.
+
+%%
+%% Set to one-and-a-half line-spacing
+%%
+\linespread{1.2} \normalsize %% adjust this for final thesis printing!
+
+%%
+%% Include each chapter as a separate file.
+%% These lines assume there are files called intro.tex, literature.tex etc.
+%%
+\include{intro}
+
+\include{literature}
+
+\include{new_ideas}
+
+\include{implementation}
+
+\include{results}
+
+\include{conclusion}
+
+%%
+%% Make certain the ``references'' section begins on a recto page when
+%% document is double-sided.
+%% The ``bibliography'' line assumes that there is a file called
+%% ``thesis.bib'' and that somewhere in the chapter material you have
+%% cited something from it.
+%%
+\cleardoublepage
+\bibliographystyle{otago}
+\bibliography{thesis}
+
+\include{appendices}
+
+\end{document}
+%% All Done!

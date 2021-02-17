@@ -1,0 +1,343 @@
+\chapter{Introduction}
+
+\section{Preamble}
+
+The {\tt otagothesis} package consists a style file and document
+template for writing theses and dissertations at the University of
+Otago.  It was intended only for computer science students, but seems
+to have found wider popularity.  Its purpose is to take the hard work
+of constructing a large document out of your hands.
+
+Earlier versions of this package used Latex to produce a DVI file
+which could be converted to PostScript and printed.  There are several
+advantages to using Pdflatex instead: the document goes straight to
+PDF, and may include graphics files of many types instead of only
+EPSF.  This package now uses Pdflatex instead of Latex.  If you wish
+to use it in place of an earlier version, you may need to convert any
+EPSF diagrams to PDF with the \verb|epstopdf| program, and you should
+remove the \verb|[dvips]| option from the \verb|\usepackage{graphicx}|
+command.
+
+This document is a quick tour of the {\tt otagothesis} package and a
+very brief comment on how to organise a thesis in Computer Science.
+For an even more brief introduction to the package, read the README
+file.  Please bear in mind that this is not a style guide, nor an
+example of good content---although you will find some ideas on how
+to cite other authors' work, and how to include tables and figures in
+your document.  These are all specific to the Systems Research Lab at
+the Computer Science Department; all other students should seek advice
+from their supervisors before following {\em any} of the advice
+contained herein!
+
+It should be very easy to convert the file {\tt thesis.tex} to
+your own use.
+The {\tt otagothesis.sty} file is not quite as flexible, but feel
+free to hack around with it if you wish---just be sure to pass on
+the original to others (or take my name off the changed version).
+The idea is that if you are an Otago University student
+you shouldn't need to change {\tt otagothesis.sty} at all.
+
+\section{Files You Need}
+\label{sec:files}
+There are several files you need to have a copy of before you will be
+able to compile this document for yourself. These files are included in the original set of files. They are:
+
+\begin{itemize}
+\item {\tt otagothesis.sty}: this is the file which provides the
+{\tt otagothesis} package.  It contains some useful commands and
+options, and formats your pages according to University library restrictions.
+\item {\tt logo.pdf}: the Otago University crest, required for your
+library declaration page.
+\item {\tt natbib.sty}: this is the file which provides Harvard style
+(author, date) citations.  It is provided in TeTeX, the distribution
+of LaTeX that comes with Redhat Linux.
+\item {\tt plainnat.bst}: this provides Author-date style bibliographies.
+It is also standard in TeTeX.
+\end{itemize}
+
+The easiest way to use the otagothesis package is to put {\tt
+otagothesis.sty} and {\tt logo.pdf} in the same directory as your
+document.  At its simplest, put \verb|\usepackage{otagothesis}|
+just after the \verb|\documentclass{report}| declaration, and you're
+away.  For other usage options, follow the pattern in the
+\verb|thesis.tex| file.
+
+\section{Compiling}
+Just to see if everything is working, try compiling this document by
+unzipping the distribution, changing into the \verb|example_document|
+directory, and
+typing `make'.  You should see a whole lot of messages printed to the
+screen, followed by a preview window showing you a title-page.  If you
+don't get this, try reading Subsection~\ref{subsec:trouble} on
+troubleshooting the distribution.  If everything seems to be OK, go on
+to Section~\ref{sec:overview} which tells you a bit about using these files.
+
+If you don't like previewing your document every time you recompile
+it, read Subsection~\ref{subsec:makefile} which has some suggestions
+for changing the makefile.
+
+\subsection{Troubleshooting}
+\label{subsec:trouble}
+Here are some of the things that might go wrong on the initial
+compilation and how to fix them.
+\begin{itemize}
+\item {\tt LaTeX Error: File `otagothesis.sty' not found}: \\
+The simplest solution is to put the relevant
+file(s) into the same directory as your document.  The files
+\verb|otagothesis.sty| and \verb|logo.pdf| are in this distribution,
+and \verb|natbib.sty|, \verb|plainnat.bst|, and \verb|moreverb.sty|
+are all available on \verb|http://www.ctan.org|.
+This can also happen if your latex distribution doesn't have
+the \verb|natbib| package installed, in which case it will complain
+about not having the files \verb|plainnat.bst| and \verb|natbib.sty|.
+Other files that could be missing are \verb|logo.pdf| or
+\verb|moreverb.sty|.  
+
+\item The makefile doesn't work: \\
+This makefile was written for GNUmake, and isn't guaranteed for any
+other version of make.  If you need to compile without make, type the
+following:
+\begin{verbatim}
+    pdflatex thesis
+    bibtex thesis
+    pdflatex thesis
+    pdflatex thesis
+\end{verbatim}
+(also known as the \LaTeX\ stanza).  The extra {\tt pdflatex} at the end
+is to get all the cross-references right.
+
+\item I printed it up, and it's all off to one side!\\
+It's supposed to be.  The bindery wants you to have a big binding
+margin on the left of recto pages and on the right of verso pages.
+If you are printing up using the one-sided option, then all of the
+pages should have a wider margin on the left.
+\
+\item Any other problems are caused by one of two things: either you
+have jumped the gun and edited a file, or your installation of \LaTeX\
+doesn't look like mine.  You need the standard \LaTeXe\ packages for
+it all to work; in particular the {\tt moreverb}, {\tt graphicx}, and
+{\tt natbib} packages are absolutely crucial.
+
+\item Many people in the department use \LaTeX , ask around for help! Internet is also great for finding solutions to \LaTeX\ problems.
+
+\end{itemize}
+
+\subsection{The Makefile}
+\label{subsec:makefile}
+The makefile for this package is called (appropriately enough)
+``Makefile''.  You will find detailed instructions for its use in the
+header comments.  A makefile tries to figure out what needs to be done
+every time you compile your thesis, depending on what was last
+changed.  It can save you a lot of typing.
+
+Briefly: typing {\tt make} will create a pdf file viewable with
+Acrobat reader, MacOsX's Preview, or Linux's gv.
+Typing {\tt make clean} will remove all auxilliary
+files, and {\tt make touch} will prepare for a complete re-compile.
+If you want to suppress automatic viewing, find the \verb|AUTOVIEW|
+variable in the makefile and set it to \verb|no|.
+
+\section{The {\tt otagothesis} Package: Overview}
+\label{sec:overview}
+
+The {\tt otagothesis} package has been designed using the guidelines in
+the booklet ``Notes on the Preparation of Theses'', available from the
+reference desk at the Central Library.  I strongly suggest that you
+obtain a copy of this and read it.
+
+Open up the {\tt thesis.tex} file to see how the {\tt otagothesis}
+package has been invoked and what sorts of options it gives you.  There
+are lots of comments to explain what each part is for.
+
+The package has the following features:
+\begin{itemize}
+\item A 30mm binding margin.  If you are printing up single sided,
+this will be on the left of every page.  If you are printing up double
+sided, it will be on the {\em left} of {\em recto} (right-hand-side)
+pages, and on the {\em right} of {\em verso} (left-hand-side) pages;
+\item Automatic title-page and contents page generation;
+\item Automatic insertion of abstract and acknowledgements files;
+\item A wide margins option for proofreading purposes (so your
+supervisor has room for the red pen!);
+\item Inclusion of the bibliography in the table of contents, renamed
+``References''.
+\end{itemize}
+The following subsection lists all of the package's options in detail. 
+
+\subsection{Package Options}
+To use the package, all you need to do is include the line
+\begin{quote}
+\verb|\usepackage[option1,option2, ... ]{otagothesis}|
+\end{quote}
+in your main document.  With no options at all, this will give you
+the commands available in the package (see the next subsection) and
+will format your document with the correct margins.  It assumes you
+are doing a PhD.
+The available options are:
+\begin{description}
+\item[{\tt nofigures}] Suppresses the production of a ``list of figures''
+page.
+\item[{\tt notables}] Suppresses the production of a ``list of
+tables'' page.
+\item[\tt nolibrary] Suppresses the production of a library
+  declaration page.
+\item[{\em thesistype}] Enter a thesistype to produce the correct
+title-page.  Available thesistypes are: {\tt phd, msc, ma, mcom,
+interimsci, interimarts, interimcom, dipsci, diparts, dipcom, bschons,
+bahons, bcomhons}.  The package will default to {\tt phd}.
+\end{description}
+
+\subsection{Package Commands}
+There is only one command provided with the package, and it is
+designed to help you print draft copies.  The command is
+\begin{quote}
+\verb|\frontstuff|
+\end{quote}
+and it places all the preface material before
+Chapter~1.  If you don't issue this command in the document, you won't
+get a title-page, table of contents, etc.---your thesis will just
+print from Chapter~1.
+
+% Physics
+\section{Other packages included in the template}
+Physics department has added some other useful package options.
+
+\subsection{{\tt amssymb } and {\tt amsmath}}
+These are the essential packages for writing math and physics formulas. 
+For a short guide to usage in your latex document see 
+\url{http://mirror.aut.ac.nz/CTAN/info/short-math-guide/short-math-guide.pdf}
+
+For example (this is an example based on the above document):
+\begin{quote}
+\begin{verbatim}
+\begin{equation}\label{first}
+\alpha=b+c
+\end{equation}
+some intervening text
+\begin{subequations}\label{grp}
+\begin{align}
+\alpha&=b+c\label{second}\\
+d&=e+f+g\label{third}\\
+h&=i+j\label{fourth}
+\end{align}
+\end{subequations}
+\end{verbatim}
+\end{quote}
+
+Produces the following:
+
+\begin{equation}\label{first}
+\alpha=b+c
+\end{equation}
+some intervening text
+\begin{subequations}\label{grp}
+\begin{align}
+\alpha &=b+c\label{second}\\
+d&=e+f+g\label{third}\\
+h&=i+j\label{fourth}
+\end{align}
+\end{subequations}
+
+
+\subsection{{\tt siunitx}}
+A great package for typing units in and out of equation mode! 
+A comprehensive guide is available at 
+\url{http://tug.ctan.org/macros/latex/exptl/siunitx/siunitx.pdf}. 
+%
+For example
+\begin{quote}
+\begin{verbatim}
+\si{kg.m.s^{-1}} \\ 
+\si{\kilogram\metre\per\second} \\ 
+\si[per-mode=symbol]{\kilogram\metre\per\second} \\ 
+\si[per-mode=symbol]{\kilogram\metre\per\ampere\per\second}
+\end{verbatim}
+\end{quote}
+Produces:\\
+%
+\si{kg.m.s^{-1}} \\ \si{\kilogram\metre\per\second} \\ 
+\si[per-mode=symbol]{\kilogram\metre\per\second} \\ 
+\si[per-mode=symbol]{\kilogram\metre\per\ampere\per\second}
+
+
+\verb|siunitx| is particularly useful when typing unit within an equations:
+The standard equation mode will italicise letters:
+\[ 1m + 1m = 2m\]
+\verb|siunitx| prevents that:
+\begin{quote}
+\begin{verbatim}
+\[ 1\si{.m} + 1\si{.m} = 2\si{.m} \]
+\end{verbatim}
+\end{quote}
+
+\[ 1\si{.m} + 1\si{.m} = 2\si{.m}\]
+
+
+
+
+\subsection{{\tt hyperref}}
+The {\tt hyperref} package generates clickable links within the compiled pdf file.
+Anytime you reference literature using \verb| \citet{} ,\citep{} | etc. 
+or reference a Chapter, Figure or Table using \verb|\ref{} | 
+\url{http://otago.ac.nz}
+
+
+
+
+\section{Using the Thesis Template}
+The main aim of this package is to allow you to write completely
+vanilla \LaTeX\ and have everything come out in the right place.  All
+you need to do is know how to create each chapter file, how to include
+them in the main document, and how to print up a draft as well as the
+main copy.
+
+So go ahead and write chapters which have \LaTeX\ formatting commands
+in them, and \verb|\include| them into the {\tt thesis.tex} file.
+If you are using \verb|make|, add the name of the chapter file to the
+makefile (including the \verb|.tex| suffix). Type {\tt make} and
+bingo: one perfectly formatted thesis!
+
+\subsection{Printing a Final Copy}
+Make sure you have issued the command \verb|\frontstuff| directly
+after \verb|\begin{document}|.  You should also comment out the line
+beginning with \verb|\includeonly|, which restricts which chapters
+you are going to print up.  If you want to include an abstract and
+acknowledgements, you should have files {\tt abstract.tex} and {\tt
+acknowledgements.tex} in the same directory as {\tt thesis.tex} and
+they will be included automatically.
+
+Now all you have to do is type {\tt make} to preview your document.
+If you are using the {\tt twosided,openright} option,
+there will be quite a few blank pages because new chapters will always
+start on a recto (right-hand-side) page.
+
+The final document is in PDF format, so you can print it either
+through a pdf viewer such as Acrobat, or by using the \verb|pdftops|
+program to produce a postscript version that you can send to the
+printer with \verb|lpr|.
+
+\subsection{Printing Specific Chapters}
+Let's suppose that you have 4 chapters done and are working on
+Chapter~5.  Compile time is getting pretty long; it would be nice if
+you could generate only Chapter~5, but retain correct pagination and
+references.  Here's how:
+\begin{enumerate}
+\item Comment out the \verb|\includeonly| line and type {\tt make} to
+create a complete set of {\tt .aux} files.
+\item Uncomment the \verb|\includeonly| line and enter the names of
+the chapter{s} you wish to print up (without the {\tt .tex} extensions).
+\item Type {\tt make} to preview the document.  Only the
+desired chapters and their references should be printed up, but the
+page numbers and cross-references should all be correct.
+\end{enumerate}
+
+\section{More to Come}
+In Chapter~\ref{chap:bib} we will look at how to use the Harvard style
+citations and references provided by the {\tt natbib} package.
+Then, in Chapter~\ref{chap:diagrams}, we discuss how to include
+figures in your document.
+Chapter~\ref{chap:code} has some examples of how to include code
+snippets in the body of your text, and how to include code in the
+appendices. Next, in Chapter~\ref{chap:tables}, some examples of
+\LaTeX\ tables are presented.  Finally, Chapter~\ref{chap:final}
+gives some dos and don'ts regarding style and content.

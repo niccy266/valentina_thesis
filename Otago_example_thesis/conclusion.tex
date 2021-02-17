@@ -1,0 +1,150 @@
+\chapter{Conclusion}
+\label{chap:final}
+
+Here are some final comments about putting together a thesis.  They
+are mostly opinion (and certainly opinionated) so take on board what
+you will.  This is free advice after all (and may be worth as much)
+but it is meant to make life easier for you.
+
+\section{10 Things You Need to Believe \ldots}
+\subsection{Use Sections}
+Chapters are BIG things.  Write an opening paragraph to your chapter,
+then mark in each section you are going to cover.  Fill in the actual
+content AFTER you have worked out just what the sections are going to
+be.
+
+\subsection{Do your Literature Review First}
+Lots of people do their literature review after they have written
+their program/done their experiment.  Don't fall into this trap---you
+think the write-up will only take six weeks, but it won't, because
+the lit.\ review will take four.  Create a BibTeX file while you do
+the review, so you can cite as you go.  You would be amazed at how
+many people don't do this.
+
+\subsection{Do Not Write a Diary}
+Nobody is interested in how you went about writing your program.  The
+academic community is interested in how you have integrated the
+existing theory with your own ideas, and the department is interested
+in why you made particular design decisions.  Remember that we are a
+Humanities department as well as a Science department, so we want to
+see some sort of convincing argument for your ideas.
+
+\subsection{Avoid Visual Formatting}
+Try not to use commands like \verb|\vspace, \pagebreak| or
+\verb|\enlargethispage|.  The whole point of \LaTeX\ is that it
+provides a markup language that works perfectly 90\% of the time.
+This means that when you have {\bf finished}, the last thing you
+should do is print up a draft, then go through and mark any formatting
+you don't like (there will probably be about one thing every ten
+pages).  That is the time to insert things like \verb|\pagebreak|
+commands.
+
+\subsection{Learn \LaTeX\ Early}
+The learning curve for \LaTeX\ is steep but short.  The idea is that
+some poor sod like me does all the dirty work, and all you have to do
+is {\em fill in the content}.  However you may spend about a week
+learning all the fiddly bits (like tables and figures), and you don't
+want to be taking time away from the actual thesis writing.
+
+\subsection{Read Some Documentation}
+In the Systems Lab, we are going to make every attempt to have
+printed documentation lying around.  If you need quick help, check out
+the file {\tt essential.dvi} on any Linux \LaTeX\ installation.  It
+is probably the best short guide to \LaTeX\ around, and even contains
+lots of tricky maths examples.
+
+\subsection{Save Paper}
+On a mac, use the layout options to print two-up and double-sided. On a
+linux machine, use {\tt  psutils} to print your drafts.  This way you
+use a quarter of the paper.  Here's what to do if you don't have
+a duplex printer:
+\begin{enumerate}
+\item Use the twosided option and make the PDF file.
+\item Use \verb|pdftops| to convert \verb|thesis.pdf| to \verb|thesis.ps|.
+\item Use {\tt psbook} to arrange the pages for booklet printing;
+\begin{quote}
+e.g. {\tt psbook thesis.ps thesis.bk.ps}.
+\end{quote}
+\item Use {\tt psnup} to get the book to a booklet;
+\begin{quote}
+e.g. {\tt psnup -2 thesis.bk.ps thesis.2up.bk.ps}.
+\end{quote}
+\item Use {\tt psselect} to print up the even pages first (in reverse),
+then the odd pages;
+\begin{quote}
+e.g.\\
+type {\tt psselect -e -r thesis.2up.bk.ps | lpr}\\
+Put the result into the sheet feeder, blank side up\\
+type {\tt psselect -o thesis.2up.bk.ps | lpr}\\
+\end{quote}
+\end{enumerate}
+
+That's the theory; in practice it goes something like this:
+\begin{quote}
+{\tt psbook thesis.ps | psnup -2 | psselect -e -r | lpr}\\
+Now open the laserjet side-door and put the paper which came out after
+the first command on the tray.  Don't change its orientation or
+anything: just pick it up, move it to the tray and drop it.  Then:\\
+{\tt psbook thesis.ps | psnup -2 | psselect -o | lpr}\\
+\end{quote}
+
+\subsection{Use \LaTeX, not Word}
+Microsoft Word is not your friend.  Word is not {\em anybody's} friend.
+It is possible to write large documents in Word, but you have to be
+{\bf so} strict on yourself (using heading styles, TOC entries, etc.)
+that you may as well have used \LaTeX\ in the end anyway.  Once a
+problem is nailed in \LaTeX, it stays nailed.  The same is not true of
+Word.  Pdflatex produces standard PDF which can be
+printed anywhere, and is fast becoming a standard for on-line article
+publication.  Ask anyone how many problems they have had printing Word
+documents to PostScript printers.
+
+\subsection{The First Copy is Not the Final Copy}
+Well, unless you're Isaac Asimov, or Mozart. Print up
+draft copies of chapters and give them to your supervisor to read,
+then implement any changes when they get returned.  Then, a week
+later, reread the chapter and change anything that makes you cringe.
+
+\subsection{Spell Check your Work}
+If you are using UNIX (as I have assumed throughout this document)
+then the {\tt ispell} program is a pretty good spell checker.  Also
+get someone to check your punctuation and grammar, and be on the
+lookout for spellchecker errors (like ``fro'' instead of ``for'',
+which will not be picked up at all).  Even the {\em worst} writer of
+novels who gets published has a good grasp of grammar, because it is
+unpleasant to read work which doesn't make sense.  There is no point
+in putting the examiner in a bad mood by turning the reading of your
+thesis into an unpleasant chore.
+
+\section{General Comments}
+Traditionally, academic works are written using the passive
+voice---``this was done'' rather than ``we did this''.  Also, the use
+of the personal pronoun ``I'' is avoided in favour of ``we''; but here
+you must be careful.  There are two ways of using ``we'': either {\em
+in}clusively or {\em ex}clusively.  Inclusively is pretty much alright
+as it makes the reader feel like part of the story; e.g. ``Reducing
+Equation 2.3 to Equation 2.4, we can see \ldots''.  Exclusively sounds
+pompous---``we now present a new algorithm which will solve this
+problem \ldots'' and should be avoided unless writing a paper with
+more than one author.
+
+There are some other things worth remembering:
+\begin{itemize}
+\item When referring to another chapter or section, Use a capital
+letter; e.g. ``see Chapter~3'' not ``see chapter~3''.  Use a tilde
+character $(\sim)$ to put a non-breaking space before the number.  That
+way you will never begin a new line with the number.
+\item The layout suggested in this document (introduction, lit.\
+review, new ideas, implementation, results, conclusion) is pretty
+generic.  If you stick to it, you will complete a thorough but boring
+thesis.  You will almost certainly need to digress occasionally, and
+perhaps integrate the literature review more with your own work.
+While academic writing isn't usually noted for its racey prose, it
+doesn't have to be boring.
+\end{itemize}
+
+Finally, at the end of your thesis, don't be afraid to blow your own
+trumpet.  If you have done something new and original, restate just
+what that is.  The last part of the concluding chapter is what most
+people read straight after the abstract, so it has to be just as pithy
+and imagination-capturing.

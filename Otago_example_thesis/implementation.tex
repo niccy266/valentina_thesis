@@ -1,0 +1,57 @@
+\chapter{Implementation}
+\label{chap:code}
+
+In this chapter, a Computer Science student would be expected to
+explain the design-decisions made regarding the program they have
+written.  Therefore, some way of including code snippets is required,
+as well as some way of printing out all of the code as an appendix.
+
+\section{Code Snippets}
+The best package for printing out code snippets is {\tt moreverb}, by
+Angus Duggan.  This lets you print out code listings, with
+numbered lines.  For code snippets, I suggest you use the {\tt
+listing} environment, like so:
+
+\linespread{1} \small
+\begin{quote}
+\begin{verbatim}
+\begin{listing}[1]{1}
+  ... some code here ...
+\end{listing}
+\end{verbatim}
+\end{quote}
+
+\linespread{1.3} \normalsize
+The example above will produce a code listing with numbers every line,
+starting from line 1, like this: 
+
+\linespread{1} \small
+\begin{quote}
+\begin{listing}[1]{1}
+#include <stdio.h>
+int main(void) {
+  printf("hello world!\n");
+}
+\end{listing}
+\end{quote} 
+\linespread{1.3} \normalsize
+
+I also prefer to issue the command \verb|\linespread{1}\small| before
+presenting code snippets, to condense the example somewhat.  If you do
+this, start a new paragraph just before the command, otherwise it
+will be applied to the paragraph above.  Also, remember to go back to
+normal spacing after the code snippet by issuing the command\\
+\verb|\linespread{1.3}\normalsize|.
+
+\section{Code Dumps}
+If you look at the file {\tt appendices.tex}, you will see how the
+code for this document has been included as an appendix.  The
+command \verb|\listinginput| has been used---it works just like
+\verb|\begin{listing}| except that it reads in a file.
+
+For the purposes of reading your code into a document, I strongly
+suggest that you make a directory under your {\tt thesis} directory
+called {\tt src\_links}.  Then, make symbolic links to all your code
+in this directory.  Next, use those links as the arguments to
+\verb|\listinginput|. Now if you change some code in a file, those
+changes will be reflected in your code dump.

@@ -1,0 +1,22 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Amir, Feldman, and Kashi}{Amir {\em
+  et~al.}}{1997}]{amir97}
+Amir, A., Feldman, R., and Kashi, R. (1997).
+\newblock {A New and Versatile Method for Association Generation}.
+\newblock In J.~Komorowsk and J.~Zytkow (Eds.), {\em {Principles of Data Mining
+  and Knowledge Engineering; First European Symposium, PKDD'97}}, Trondheim,
+  Norway,  221--231. Springer-Verlag.
+
+\bibitem[\protect\citeauthoryear{Goosens, Mittelbach, and Samarin}{Goosens {\em
+  et~al.}}{1994}]{goosens94}
+Goosens, M., Mittelbach, F., and Samarin, A. (1994).
+\newblock {\em {The \LaTeX\ Companion}\/} (2nd ed.).
+\newblock Addison-Wesley.
+
+\bibitem[\protect\citeauthoryear{Rountree}{Rountree}{1998}]{rountree98}
+Rountree, N. (1998).
+\newblock {\em {How to do Anything}}.
+\newblock Dunedin, New Zealand: {Non-existent Publishers}.
+
+\end{thebibliography}
